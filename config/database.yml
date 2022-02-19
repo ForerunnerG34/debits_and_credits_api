@@ -20,10 +20,12 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV["DEBITS_AND_CREDITS_API_USERNAME"] %>
+  password: <%= ENV["DEBITS_AND_CREDITS_API_PASSWORD"] %>
 
 development:
   <<: *default
-  URL: <%= ENV['DATABASE_URL'] %>
+  database: debits_and_credits_api_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -58,7 +60,10 @@ development:
 test:
   <<: *default
   database: debits_and_credits_api_test
-
+  #host: <%= ENV["DEBITS_AND_CREDITS_API_TEST_HOST"] %>
+  #database: d9ficjuoqsg89g
+  #username: <%= ENV["DEBITS_AND_CREDITS_API_TEST_USERNAME"] %>
+  #password: <%= ENV["DEBITS_AND_CREDITS_API_TEST_PASSWORD"] %>
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -81,6 +86,4 @@ test:
 #
 production:
   <<: *default
-  database: debits_and_credits_api_production
-  username: debits_and_credits_api
-  password: <%= ENV["DEBITS_AND_CREDITS_API_DATABASE_PASSWORD"] %>
+  #URL: <%= ENV['DATABASE_URL'] %>
