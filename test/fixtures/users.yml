@@ -2,7 +2,7 @@
 
 one:
   email: one@one.org
-  password_digest: hased_password
+  password_digest: <%= BCrypt::Password.create('v$l1D_p4S&') %>
 
 two:
   email: MyString
