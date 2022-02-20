@@ -1,18 +1,22 @@
 class Api::V1::JournalsController < ApplicationController
-    before_action :set_journal, only: %i[show destroy]
-    before_action :check_owner, only: %i[show destroy]
+    before_action :check_login
+    before_action :set_journal, only: %i[show]
 
     def show
-        render json: Journal.find(params[:id])
+       if @journal
+            render json: @journal
+        else
+            head 404
+        end
+    end
+
+    def index
+        render json: current_user.journals.all
     end
 
     private
 
     def set_journal
-        @journal = Journal.find(params[:id])
-    end
-
-    def check_owner
-        head :forbidden unless @journal.user_id == current_user&.id
+        @journal = current_user.journals.find_by_id params[:id]
     end
 end
