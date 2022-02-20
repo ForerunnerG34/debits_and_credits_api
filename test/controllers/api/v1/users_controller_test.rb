@@ -7,8 +7,7 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should show user' do
     get api_v1_user_url(@user),
-    headers: { Authorization: JsonWebToken.encode(user_id: @user.id) },
-    
+    headers: { Authorization: JsonWebToken.encode(user_id: @user.id) },    
     as: :json
     assert_response :success
 
