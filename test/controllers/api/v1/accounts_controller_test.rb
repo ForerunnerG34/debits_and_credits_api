@@ -36,4 +36,12 @@ class Api::V1::AccountsControllerTest < ActionDispatch::IntegrationTest
     as: :json
     assert_response :success    
   end
+
+  test 'should create account' do
+    post api_v1_accounts_url,
+    headers: { Authorization: JsonWebToken.encode(user_id: @user.id) },
+    params: { account: { name: 'Test debit account', is_debit: true }},
+    as: :json
+    assert_response :created
+  end
 end
