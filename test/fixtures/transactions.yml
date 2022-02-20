@@ -2,10 +2,10 @@
 
 one:
   amount: 9.99
-  debit: false
+  is_debit: false
   journal: one
 
 two:
   amount: 9.99
-  debit: false
+  is_debit: false
   journal: two
