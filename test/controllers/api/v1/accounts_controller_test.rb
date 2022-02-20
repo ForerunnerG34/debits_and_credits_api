@@ -52,4 +52,14 @@ class Api::V1::AccountsControllerTest < ActionDispatch::IntegrationTest
     as: :json
     assert_response :success
   end
+
+  test 'should delete account' do
+    assert_difference('Account.count', -1) do
+      delete api_v1_account_url(@user), 
+      headers: { Authorization: JsonWebToken.encode(user_id: @user.id) }, 
+      as: :json
+    end
+    assert_response :no_content
+  end
+
 end
