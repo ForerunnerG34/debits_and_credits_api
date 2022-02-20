@@ -1,6 +1,6 @@
 class Api::V1::AccountsController < ApplicationController
     before_action :check_login
-    before_action :set_account, only: %i[show]
+    before_action :set_account, only: %i[show update]
 
     def show
         if @account
@@ -24,6 +24,14 @@ class Api::V1::AccountsController < ApplicationController
             account json: account.errors, status: :unprocessable_entity    
         end
     end
+
+    def update
+        if @account.update(account_params)
+          render json: @account
+        else
+          render json: @account.errors, status: :unprocessable_entity
+        end
+      end
 
     private
 

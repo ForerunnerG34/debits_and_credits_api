@@ -44,4 +44,12 @@ class Api::V1::AccountsControllerTest < ActionDispatch::IntegrationTest
     as: :json
     assert_response :created
   end
+
+  test 'should update existing account' do
+    patch api_v1_account_url(@account),
+    headers: { Authorization: JsonWebToken.encode(user_id: @user.id) },
+    params: { account: { name: 'Updated test debit account' }},
+    as: :json
+    assert_response :success
+  end
 end
