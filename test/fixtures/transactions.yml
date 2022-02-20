@@ -4,8 +4,10 @@ one:
   amount: 9.99
   is_debit: false
   journal: one
+  user: one
 
 two:
   amount: 9.99
   is_debit: false
   journal: two
+  user: two
